@@ -1,8 +1,8 @@
            
                                                                                                                                                                          
-# LOKI IOC Scan Manager
-Making LOKI IOC scans Manageable across Enterprise Windows Systems 
+LOKI IOC Scan Manager
 =========================================================
+Making LOKI IOC scans Manageable across Enterprise Windows Systems 
 
 ## History Behind:
 Loki scanner is a well known and respected IOC scanner. Unfortunately it is a standalone tool that misses several options once we want to adopt it at the enterprise grade.
