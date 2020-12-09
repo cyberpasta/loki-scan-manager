@@ -76,8 +76,7 @@ The Automation script will have the following components under its folder:
 | &lt;add key="OverwritePayloadIfExists" value="TRUE"/&gt; | Preferred to be TRUE |
 | &lt;add key="KillProcessIfAlreadyRunning" value="TRUE"/&gt; | Keep it TRUE |
 | &lt;add key="ScanAllDrives" value="TRUE"/&gt; | Set FALSE to scan only C drive |
-| &lt;add key="LimitDriveSize" value="TRUE"/&gt; | If set TRUE, then  MaxAllowableDriveSizeBytes will be applicable\.
-If FALSE: will scan the drive regardless of its used space\. |
+| &lt;add key="LimitDriveSize" value="TRUE"/&gt; | If set TRUE, then  MaxAllowableDriveSizeBytes will be applicable\.<br>If FALSE, will scan the drive regardless of its used space\. |
 | &lt;add key="MaxAllowableDriveSizeBytes" value="1000000000000"/&gt; | Max allowed scanned used space in Bytes\. \(Not Disk Size\) | 
 | &lt;add key="MaxErrorsPerExecution" value="1000"/&gt;  | How many errors are allowed to occur during execution stage. Needed to handle hosts that became problematic during the scan\. They will be timed-out\. |
 
