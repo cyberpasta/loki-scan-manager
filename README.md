@@ -6,14 +6,16 @@ Making LOKI IOC Scans Manageable Across Enterprise Windows Systems
 
 ## History Behind:
 Loki scanner is a well known and respected IOC scanner. Unfortunately it is a standalone tool that misses several options once we want to adopt it at the enterprise grade.
-1- Loki scans only drive C: by default.
-2- No capability to include or exclude a drive to the scan based on give conditions. e.g. We can't exclude scanning a drive if it is too large.
-3- No easy way to track the status of the scans across all serves. e.g. can't easily identify what assets failed the scan. What asset is not reachable. 
+
+1. Loki scans only drive C: by default.
+2. No capability to include or exclude a drive to the scan based on give conditions. e.g. We can't exclude scanning a drive if it is too large.
+3. No easy way to track the status of the scans across all serves. e.g. can't easily identify what assets failed the scan. What asset is not reachable. 
 
 ## Solution:
 LOKI IOC Scan Manager, is a powershell based script that comes into filling the missing gap between the power of powershell automation and the IOC scan capability of LOKI.
 
 ## Features:
+
 - Centralized Management System for All scans
 - Costomization, capability to select maximum concurrent scans
 - capabilty to list the non system drives on the system and include them in the scan
