@@ -67,14 +67,11 @@ The Automation script will have the following components under its folder:
 5-	Open the file “targets.txt” and place the full list of servers you want to scan.
 6-	Fine-tuning the Scan Settings: You can fine-tune your scan settings by editing the config file “PowerPlaybook.config”. These are the description of the config settings:
 
-| Key                                                 | Description                                             |
------------------------------------------------------------------------------------------------------------------
-| <add key="MaxJobsAtaTime" value="10"/>               | Number of simultaneous scans to be performed. Default is 10 |
+| Key | Description |
+|-----|-------------|
+| <add key="MaxJobsAtaTime" value="10"/> | Number of simultaneous scans to be performed. Default is 10 |
 | <add key="ResolveHostIP" value="FALSE"/> | Enable/Disable Resolve IP. Preferred to keep it FALSE |
-| <add key="DeletePayloadAfterEnd" value="TRUE"/> | Preferred to keep it TRUE. Set it False if you want to run multiple scans  on the same servers| 
-
-
-## Usage
+| <add key="DeletePayloadAfterEnd" value="TRUE"/> | Preferred to keep it TRUE. Set it False if you want to run multiple scans  on the same servers |
 
 ## Reference:
 [Neo23x0 Loki Repository](https://github.com/Neo23x0/Loki)
