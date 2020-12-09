@@ -58,14 +58,15 @@ The Automation script will have the following components under its folder:
 - Wait for the user to press “Enter” to exit the scrip.
 
 ## Instructions to Run the Script:
-1-	Identify a machine to be used to initiate the scan:
+
+1.	Identify a machine to be used to initiate the scan:
   a.	It must be accessible to all servers to be scanned and able to connect to the following ports TCP ports 445, 135, 
   b.	Poweshell version of scanning machine needs to be minimum 4. Could be available on wondows10, windows server 2012 or 2016.
-2-	Make sure that the servers to be scanned have WMI service enabled.
-3-	Identify a domain account to be used for the scan.
-4-	Assign to this Scanning User local admin privileges on all machines to be scanned.
-5-	Open the file “targets.txt” and place the full list of servers you want to scan.
-6-	Fine-tuning the Scan Settings: You can fine-tune your scan settings by editing the config file “PowerPlaybook.config”. These are the description of the config settings:
+2.	Make sure that the servers to be scanned have WMI service enabled.
+3.	Identify a domain account to be used for the scan.
+4.	Assign to this Scanning User local admin privileges on all machines to be scanned.
+5.	Open the file “targets.txt” and place the full list of servers you want to scan.
+6.	Fine-tuning the Scan Settings: You can fine-tune your scan settings by editing the config file “PowerPlaybook.config”. These are the description of the config settings:
 
 | Key | Description |
 |-----|-------------|
