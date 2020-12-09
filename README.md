@@ -69,9 +69,9 @@ The Automation script will have the following components under its folder:
 
 | Key | Description |
 |-----|-------------|
-| <add key="MaxJobsAtaTime" value="10"/> | Number of simultaneous scans to be performed. Default is 10 |
-| <add key="ResolveHostIP" value="FALSE"/> | Enable/Disable Resolve IP. Preferred to keep it FALSE |
-| <add key="DeletePayloadAfterEnd" value="TRUE"/> | Preferred to keep it TRUE. Set it False if you want to run multiple scans  on the same servers |
+| &ltadd key="MaxJobsAtaTime" value="10"/&gt | Number of simultaneous scans to be performed. Default is 10 |
+| &ltadd key="ResolveHostIP" value="FALSE"/&gt | Enable/Disable Resolve IP. Preferred to keep it FALSE |
+| &ltadd key="DeletePayloadAfterEnd" value="TRUE"/&gt | Preferred to keep it TRUE. Set it False if you want to run multiple scans  on the same servers |
 
 ## Reference:
 [Neo23x0 Loki Repository](https://github.com/Neo23x0/Loki)
