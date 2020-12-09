@@ -71,12 +71,12 @@ The Automation script will have the following components under its folder:
 ## Execution:
 9. Now that we have a command prompt running with the privileges of the scanning user, Navigate to the folder where the Powershell script is located and execute the following command:
 ```python
-powershell -ep bypass PowerPlaybook.ps1
+   powershell -ep bypass PowerPlaybook.ps1
 ```
-OR
-Just execute the following bat file and it will lunch the Powerplaybook:
+   OR
+   Just execute the following bat file and it will lunch the Powerplaybook:
 ```bash
-RunPowerPlaybook.bat
+   RunPowerPlaybook.bat
 ```
 10. For extra security, change the user password on every bunch of servers you scan.
 
