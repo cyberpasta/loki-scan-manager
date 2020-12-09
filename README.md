@@ -33,29 +33,29 @@ The Automation script will have the following components under its folder:
 -	**PowerPlaybook.ps1.sha256:** This is sha256 hash of the script “PowerPlaybook.ps1”. It is used to prove the integrity of the script as it was delivered.
 
 ## Method Of Operation:
--	The scrip will use the privilege of the user who initiated it.
--	It Imports the list of assets subject for scanning from the file ” tragets.txt” and place them into a table. 
+-	The scrip will use the privilege of the user who initiated it
+-	It Imports the list of assets subject for scanning from the file ” tragets.txt” and place them into a table 
 -	For each machine from the list, perform a series of checks to make sure environment is ready for scan:
-  * Check if server is pingable
-  * Check if ports are open(445,135, DCOM)
-  * Check if C$ is accessible
-  * Check if Windows\Temp folder is accessible
-  * Check if a process named Loki is already running on the system. The default setting is to kill the process and make sure it was properly killed.
-  * Check if an existing copy of Loki folder is already on the system.
-  * If a LOKI folder does exist on Windows/temp/loki, then the default action is to delete the folder.
--	The output of each of the above check is recorded in the same table of assets in preparation for exporting it later-on as a reference.
--	Now that we have identified what servers are good to go and which ones are not. Proceed with the list of servers that are ready for scanning
--	For each server, copy LOKI folder from the source machine to the windows\temp folder on the remote server.
--	Wait for User approval. To initiate the scan press “Enter”.
--	The script starts executing the scripts in parallel according to the predefined value of maximum concurrent scans.
--	The scripts moves to the progress review menu, where you will see the list of currently running Scans.
--	Every time a scan finishes, the scrip will automatically push into the que a new machine from the list of scan ready targets.
--	Once all scans are done,
--	Copy the Scan Report from the remote machine to the local scanning machine. Place the reports under the folder “Reports” 
--	Delete the Remote LOKI Folder
--	Display the Scan Summary Table in a grid View format.
--	Export the Scan report into the same folder of the script.
--	Wait for the user to press “Enter” to exit the scrip
+    - Check if server is pingable
+    - Check if ports are open(445,135, DCOM)
+    - Check if C$ is accessible
+    - Check if Windows\Temp folder is accessible
+    - Check if a process named Loki is already running on the system. The default setting is to kill the process and make sure it was properly killed
+     - Check if an existing copy of Loki folder is already on the system
+     - If a LOKI folder does exist on Windows/temp/loki, then the default action is to delete the folder
+- The output of each of the above check is recorded in the same table of assets in preparation for exporting it later-on as a reference
+- Now that we have identified what servers are good to go and which ones are not. Proceed with the list of servers that are ready for scanning
+- For each server, copy LOKI folder from the source machine to the windows\temp folder on the remote server
+- Wait for User approval. To initiate the scan press “Enter”
+- The script starts executing the scripts in parallel according to the predefined value of maximum concurrent scans
+- The scripts moves to the progress review menu, where you will see the list of currently running Scans
+- Every time a scan finishes, the scrip will automatically push into the que a new machine from the list of scan ready targets
+- Once all scans are done,
+- Copy the Scan Report from the remote machine to the local scanning machine. Place the reports under the folder “Reports” 
+- Delete the Remote LOKI Folder
+- Display the Scan Summary Table in a grid View format
+- Export the Scan report into the same folder of the script
+- Wait for the user to press “Enter” to exit the scrip.
 
 ## Instructions to Run the Script:
 1-	Identify a machine to be used to initiate the scan:
