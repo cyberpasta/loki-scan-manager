@@ -70,12 +70,14 @@ The Automation script will have the following components under its folder:
 6.	Fine-tuning the Scan Settings: You can fine-tune your scan settings by editing the config file “PowerPlaybook.config”. These are the description of the config settings.
 ## Execution:
 9. Now that we have a command prompt running with the privileges of the scanning user, Navigate to the folder where the Powershell script is located and execute the following command:
-
-{{ powershell -ep bypass PowerPlaybook.ps1 }}}
+```ruby
+powershell -ep bypass PowerPlaybook.ps1
+```
 OR
 Just execute the following bat file and it will lunch the Powerplaybook:
-
-{{ RunPowerPlaybook.bat }}}
+```ruby
+RunPowerPlaybook.bat
+```
 10. For extra security, change the user password on every bunch of servers you scan.
 
 ## "PowerPlaybook.config" Settings:
