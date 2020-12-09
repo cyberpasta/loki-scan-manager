@@ -67,7 +67,7 @@ The Automation script will have the following components under its folder:
 3.	Identify a domain account to be used for the scan.
 4.	Assign to this Scanning User local admin privileges on all machines to be scanned.
 5.	Open the file “targets.txt” and place the full list of servers you want to scan.
-6.	Fine-tuning the Scan Settings: You can fine-tune your scan settings by editing the config file “PowerPlaybook.config”. For details check the section [powerplaybook.config settings](/README.md#powerplaybookconfig-settings)
+6.	Fine-tuning the Scan Settings: You can fine-tune your scan settings by editing the config file “PowerPlaybook.config”. For details check the section [powerplaybook.config settings](/README.md#powerplaybookconfig-settings)\.
 ## Execution:
 9. Now that we have a command prompt running with the privileges of the scanning user, Navigate to the folder where the Powershell script is located and execute the following command:
 ```python
@@ -92,8 +92,6 @@ The Automation script will have the following components under its folder:
 | &lt;add key="LimitDriveSize" value="TRUE"/&gt; | If set TRUE, then  MaxAllowableDriveSizeBytes will be applicable\.<br>If FALSE, will scan the drive regardless of its used space\. |
 | &lt;add key="MaxAllowableDriveSizeBytes" value="1000000000000"/&gt; | Max allowed scanned used space in Bytes\. \(Not Disk Size\) | 
 | &lt;add key="MaxErrorsPerExecution" value="1000"/&gt;  | How many errors are allowed to occur during execution stage. Needed to handle hosts that became problematic during the scan\. They will be timed-out\. |
-
-
 
 ## Reference:
 [Neo23x0 Loki Repository](https://github.com/Neo23x0/Loki)
