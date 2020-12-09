@@ -8,7 +8,7 @@ Making LOKI IOC Scans Manageable Across Enterprise Windows Systems
 Loki scanner is a well known and respected IOC scanner. Unfortunately it is a standalone tool that misses several options once we want to adopt it at the enterprise grade.
 
 1. Loki scans only drive C: by default.
-2. No capability to include or exclude a drive to the scan based on give conditions. e.g. We can't exclude scanning a drive if it is too large.
+2. No capability to include or exclude a drive to the scan based on given conditions. e.g. We can't exclude scanning a drive if it is too large.
 3. No easy way to track the status of the scans across all serves. e.g. can't easily identify what assets failed the scan. What asset is not reachable. 
 
 ## Solution:
