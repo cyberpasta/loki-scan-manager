@@ -1,34 +1,78 @@
-  _      ____  _  _______   __  __                                   
- | |    / __ \| |/ /_   _| |  \/  |                                  
- | |   | |  | | ' /  | |   | \  / | __ _ _ __   __ _  __ _  ___ _ __ 
- | |   | |  | |  <   | |   | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
- | |___| |__| | . \ _| |_  | |  | | (_| | | | | (_| | (_| |  __/ |   
- |______\____/|_|\_\_____| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|   
-                                                      __/ |          
-                                                     |___/           
-   __    ___       _____                                            
-  / /   /___\/\ /\ \_   \   /\/\   __ _ _ __   __ _  __ _  ___ _ __ 
- / /   //  // //_/  / /\/  /    \ / _` | '_ \ / _` |/ _` |/ _ \ '__|
-/ /___/ \_// __ \/\/ /_   / /\/\ \ (_| | | | | (_| | (_| |  __/ |   
-\____/\___/\/  \/\____/   \/    \/\__,_|_| |_|\__,_|\__, |\___|_|   
-                                                    |___/           
- __        ______    __  ___  __     .___  ___.      ___      .__   __.      ___       _______  _______ .______      
-|  |      /  __  \  |  |/  / |  |    |   \/   |     /   \     |  \ |  |     /   \     /  _____||   ____||   _  \     
-|  |     |  |  |  | |  '  /  |  |    |  \  /  |    /  ^  \    |   \|  |    /  ^  \   |  |  __  |  |__   |  |_)  |    
-|  |     |  |  |  | |    <   |  |    |  |\/|  |   /  /_\  \   |  . `  |   /  /_\  \  |  | |_ | |   __|  |      /     
-|  `----.|  `--'  | |  .  \  |  |    |  |  |  |  /  _____  \  |  |\   |  /  _____  \ |  |__| | |  |____ |  |\  \----.
-|_______| \______/  |__|\__\ |__|    |__|  |__| /__/     \__\ |__| \__| /__/     \__\ \______| |_______|| _| `._____|
+           
                                                                                                                                                                          
-# loki-scan-manager
-Manages loki scans over a large network.
+# LOKI IOC Scan Manager
+Making LOKI IOC scans Manageable across Enterprise Windows Systems 
+=========================================================
 
-## History Behind
-Loki scanner is a well known and respected IOC scanner. While we wanted to adopt the scanning on a large scale I foind it challenging to 
+## History Behind:
+Loki scanner is a well known and respected IOC scanner. Unfortunately it is a standalone tool that misses several options once we want to adopt it at the enterprise grade.
+1- Loki scans only drive C: by default.
+2- No capability to include or exclude a drive to the scan based on give conditions. e.g. We can't exclude scanning a drive if it is too large.
+3- No easy way to track the status of the scans across all serves. e.g. can't easily identify what assets failed the scan. What asset is not reachable. 
 
-## Project Objectives:
-- Automate
+## Solution:
+LOKI IOC Scan Manager, is a powershell based script that comes into filling the missing gap between the power of powershell automation and the IOC scan capability of LOKI.
 
+## Features:
+- Centralized Management System for All scans
+- Costomization, capability to select maximum concurrent scans
+- capabilty to list the non system drives on the system and include them in the scan
+- Capability to select the maximum used disk space
+- LOKI Log Parser
 
-## Installation
+## Structure:
+The Automation script will have the following components under its folder:
+-	**PowerPlaybook.ps1:** This is the core PowerShell script that holds the automation logic.
+-	**Targets.txt:** this is a text file that contains the list of Machine Names to be scanned. The fully qualified domain name must be places one per line.
+-	**PowerPlaybook.config:** This is the Configuration file that can control various settings such as max disk size, Max filesize to scan,  Enable/Disable  IP Resolution, Folder Detection, etc. 
+-	**Reports Folder:** This folder will hold the reports gathered from each scanned machine. The reports are named as per the machine name. Make sure not to have the reports opened while running the scan the script will not be able to override the opened file. 
+-	**Loki folder:** Holds the LOKI executables and signatures. This folder is being copied to each remote machine to be executed there.
+-	**RunPowerPlaybook.bat:** This is a batch script that can be user to run PowerPlaybook.ps1 with all necessary keys and arguments.
+-	**PowerPlaybook.ps1.sha256:** This is sha256 hash of the script “PowerPlaybook.ps1”. It is used to prove the integrity of the script as it was delivered.
+
+## Method Of Operation:
+-	The scrip will use the privilege of the user who initiated it.
+-	It Imports the list of assets subject for scanning from the file ” tragets.txt” and place them into a table. 
+-	For each machine from the list, perform a series of checks to make sure environment is ready for scan:
+  * Check if server is pingable
+  * Check if ports are open(445,135, DCOM)
+  * Check if C$ is accessible
+  * Check if Windows\Temp folder is accessible
+  * Check if a process named Loki is already running on the system. The default setting is to kill the process and make sure it was properly killed.
+  * Check if an existing copy of Loki folder is already on the system.
+  * If a LOKI folder does exist on Windows/temp/loki, then the default action is to delete the folder.
+-	The output of each of the above check is recorded in the same table of assets in preparation for exporting it later-on as a reference.
+-	Now that we have identified what servers are good to go and which ones are not. Proceed with the list of servers that are ready for scanning
+-	For each server, copy LOKI folder from the source machine to the windows\temp folder on the remote server.
+-	Wait for User approval. To initiate the scan press “Enter”.
+-	The script starts executing the scripts in parallel according to the predefined value of maximum concurrent scans.
+-	The scripts moves to the progress review menu, where you will see the list of currently running Scans.
+-	Every time a scan finishes, the scrip will automatically push into the que a new machine from the list of scan ready targets.
+-	Once all scans are done,
+-	Copy the Scan Report from the remote machine to the local scanning machine. Place the reports under the folder “Reports” 
+-	Delete the Remote LOKI Folder
+-	Display the Scan Summary Table in a grid View format.
+-	Export the Scan report into the same folder of the script.
+-	Wait for the user to press “Enter” to exit the scrip
+
+## Instructions to Run the Script:
+1-	Identify a machine to be used to initiate the scan:
+  a.	It must be accessible to all servers to be scanned and able to connect to the following ports TCP ports 445, 135, 
+  b.	Poweshell version of scanning machine needs to be minimum 4. Could be available on wondows10, windows server 2012 or 2016.
+2-	Make sure that the servers to be scanned have WMI service enabled.
+3-	Identify a domain account to be used for the scan.
+4-	Assign to this Scanning User local admin privileges on all machines to be scanned.
+5-	Open the file “targets.txt” and place the full list of servers you want to scan.
+6-	Fine-tuning the Scan Settings: You can fine-tune your scan settings by editing the config file “PowerPlaybook.config”. These are the description of the config settings:
+
+| Key                                                 | Description                                             |
+-----------------------------------------------------------------------------------------------------------------
+| <add key="MaxJobsAtaTime" value="10"/>               | Number of simultaneous scans to be performed. Default is 10 |
+| <add key="ResolveHostIP" value="FALSE"/> | Enable/Disable Resolve IP. Preferred to keep it FALSE |
+| <add key="DeletePayloadAfterEnd" value="TRUE"/> | Preferred to keep it TRUE. Set it False if you want to run multiple scans  on the same servers| 
+
 
 ## Usage
+
+## Reference:
+[Neo23x0 Loki Repository](https://github.com/Neo23x0/Loki)
