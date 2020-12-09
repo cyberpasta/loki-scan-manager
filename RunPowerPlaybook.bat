@@ -1,0 +1,1 @@
+powershell  -ExecutionPolicy Bypass ./PowerPlaybook.ps1

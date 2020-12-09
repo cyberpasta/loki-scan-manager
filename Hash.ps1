@@ -1,0 +1,1 @@
+﻿Get-FileHash .\PowerPlaybook.ps1 -Algorithm SHA256| Format-List | Out-File .\PowerPlaybook.ps1.sha256
