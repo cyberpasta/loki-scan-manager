@@ -58,6 +58,7 @@ The Automation script will have the following components under its folder:
 - Wait for the user to press “Enter” to exit the scrip.
 
 ## Instructions to Run the Script:
+### Preparation:
 
 1.	Identify a machine to be used to initiate the scan:
   a.	It must be accessible to all servers to be scanned and able to connect to the following ports TCP ports 445, 135, 
@@ -66,8 +67,16 @@ The Automation script will have the following components under its folder:
 3.	Identify a domain account to be used for the scan.
 4.	Assign to this Scanning User local admin privileges on all machines to be scanned.
 5.	Open the file “targets.txt” and place the full list of servers you want to scan.
-6.	Fine-tuning the Scan Settings: You can fine-tune your scan settings by editing the config file “PowerPlaybook.config”. These are the description of the config settings:
+6.	Fine-tuning the Scan Settings: You can fine-tune your scan settings by editing the config file “PowerPlaybook.config”. These are the description of the config settings.
+## Execution:
+9. Now that we have a command prompt running with the privileges of the scanning user, Navigate to the folder where the Powershell script is located and execute the following command:
+{{ powershell -ep bypass PowerPlaybook.ps1 }}}
+OR
+Just execute the following bat file and it will lunch the Powerplaybook:
+{{ RunPowerPlaybook.bat }}}
+10. For extra security, change the user password on every bunch of servers you scan.
 
+## "PowerPlaybook.config" Settings:
 | Key | Description |
 |-----|-------------|
 | &lt;add key="MaxJobsAtaTime" value="10"/&gt; | Number of simultaneous scans to be performed. Default is 10 |
